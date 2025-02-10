@@ -67,6 +67,24 @@ public class InsightApiController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @Operation(
+            summary = "[103] Get Insight Summaries",
+            description = "폴더에 속한 Insight 요약 정보 리스트를 조회합니다."
+    )
+    @GetMapping("{folderId}/v1")
+    public ResponseEntity<ApiResponse<InsightSummaryCollection>> getInsightSummaries(
+            @PathVariable final Long folderId,
+            @Parameter(hidden = true) @RequestHeader("X-User-Id") final Long memberId) {
+        log.info("[getInsightSummaries] folderId: {}, memberId: {}", folderId, memberId);
+
+        ApiResponse<InsightSummaryCollection> response = ApiResponse.<InsightSummaryCollection>builder()
+                .status(200)
+                .message("Success get folder insights summaries")
+                .data(insightService.getInsightSummaries(folderId, memberId))
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
     @Operation(summary = "[208] Save Insight",
             description = "인사이트를 저장합니다.")

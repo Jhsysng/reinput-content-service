@@ -42,6 +42,15 @@ public class InsightServiceImpl implements InsightService {
     }
 
     @Override
+    public InsightSummaryCollection getInsightSummaries(final Long folderId, final Long memberId) {
+        log.info("[InsightService.getInsightSummaries] folderId : {}, memberId : {}", folderId, memberId);
+
+        return InsightSummaryCollection.builder()
+                .insightSummaries(insightRepository.getInsightSummaries(folderId))
+                .build();
+    }
+
+    @Override
     public InsightSummaryCollection getSharedInsightSummaries(final String shareId, final Long memberId) {
         log.info("[InsightService.getSharedInsightSummaries] shareId : {}, memberId : {}", shareId, memberId);
 

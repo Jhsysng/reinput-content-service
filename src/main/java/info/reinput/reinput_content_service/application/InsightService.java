@@ -10,7 +10,7 @@ import java.util.Map;
 public interface InsightService {
     Long countInsight(final Long folderId, final Long memberId);
     InsightCountCollection countInsight(final List<Long> folderIds, final Long memberId);
-    //InsightSummaryCollection getInsightSummaries(final Long folderId, final Long memberId);
+    InsightSummaryCollection getInsightSummaries(final Long folderId, final Long memberId);
     InsightDto editInsight(final InsightDto insightDto, final Long memberId);
     InsightDto saveInsight(final InsightDto insightDto, final Long memberId);
     InsightSummaryCollection getSharedInsightSummaries(final String shareId, final Long memberId);
